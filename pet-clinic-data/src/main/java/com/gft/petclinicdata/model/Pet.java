@@ -1,8 +1,8 @@
-package com.gft.petclinic.model;
+package com.gft.petclinicdata.model;
 
 import java.time.LocalDate;
 
-public class Pet {
+public class Pet extends BaseEntity {
 
     private PetType petType;
     private Owner owner;

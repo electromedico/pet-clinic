@@ -1,4 +1,4 @@
-package com.gft.petclinic.model;
+package com.gft.petclinicdata.model;
 
 public class Vet extends Person {
 
