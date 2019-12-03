@@ -3,10 +3,7 @@ package com.gft.petclinicweb.bootstrap;
         import com.gft.petclinicdata.model.Owner;
         import com.gft.petclinicdata.model.Vet;
         import com.gft.petclinicdata.services.OwnerService;
-        import com.gft.petclinicdata.services.PetService;
         import com.gft.petclinicdata.services.VetService;
-        import com.gft.petclinicdata.services.map.OwnerServiceMap;
-        import com.gft.petclinicdata.services.map.VetServiceMap;
         import org.springframework.boot.CommandLineRunner;
         import org.springframework.stereotype.Component;
 
@@ -15,9 +12,10 @@ public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
 
