@@ -6,5 +6,8 @@
 </head>
 <body>
 <h1 th:text="'List of Owners'"> List of owners ...</h1>
+<div th:each="owner : ${owners}">
+    <p th:text="${owner.getFirstName() +' '+ owner.getLastName()}">owner..</p>
+</div>
 </body>
 </html>
