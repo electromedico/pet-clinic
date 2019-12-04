@@ -1,13 +1,7 @@
 package com.gft.petclinicweb.bootstrap;
 
-        import com.gft.petclinicdata.model.Owner;
-        import com.gft.petclinicdata.model.Pet;
-        import com.gft.petclinicdata.model.PetType;
-        import com.gft.petclinicdata.model.Vet;
-        import com.gft.petclinicdata.services.OwnerService;
-        import com.gft.petclinicdata.services.PetService;
-        import com.gft.petclinicdata.services.PetTypeService;
-        import com.gft.petclinicdata.services.VetService;
+        import com.gft.petclinicdata.model.*;
+        import com.gft.petclinicdata.services.*;
         import org.springframework.boot.CommandLineRunner;
         import org.springframework.stereotype.Component;
 
@@ -19,16 +13,24 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final VetSpecialtyService vetSpecialtyService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, VetSpecialtyService vetSpecialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.vetSpecialtyService = vetSpecialtyService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        int count = petTypeService.findAll().size();
+        if (count ==0){
+            loadData();
+        }
+    }
 
+    private void loadData() {
         PetType dogType = new PetType();
         dogType.setName("Dog");
         dogType =petTypeService.save(dogType);
@@ -70,18 +72,26 @@ public class DataLoader implements CommandLineRunner {
         owner2 = ownerService.save(owner2);
 
 
+        VetSpecialty radSpecialty = new VetSpecialty();
+        radSpecialty.setDescription("radiology");
+
+        VetSpecialty generalSpecialty = new VetSpecialty();
+        generalSpecialty.setDescription("General");
+
+        radSpecialty = vetSpecialtyService.save(radSpecialty);
+        generalSpecialty = vetSpecialtyService.save(generalSpecialty);
+
         Vet vet = new Vet();
         vet.setFirstName("Foo");
         vet.setLastName("bar");
+        vet.getSpecialties().add(radSpecialty);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Vet");
         vet2.setLastName("Vet");
+        vet2.getSpecialties().add(generalSpecialty);
 
         vetService.save(vet);
         vetService.save(vet2);
-
-
-
     }
 }
