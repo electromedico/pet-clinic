@@ -1,13 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 <head>
     <meta charset="UTF-8">
     <title>Vets</title>
 </head>
 <body>
-<h1 th:text="'List of Owners'"> List of owners ...</h1>
-<div th:each="owner : ${owners}">
-    <p th:text="${owner.getFirstName() +' '+ owner.getLastName()}">owner..</p>
-</div>
+<h2> Owners </h2>
+<table id="owners" class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Id</th>
+        <th style="width: 200px;">First Name</th>
+        <th style="width: 200px;">Last Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${owners}">
+        <td th:text="${owner.id}"/>
+        <td th:text="${owner.firstName}"/>
+        <td th:text="${owner.lastName}"/>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
