@@ -78,8 +78,8 @@ public class DataLoader implements CommandLineRunner {
         VetSpecialty generalSpecialty = new VetSpecialty();
         generalSpecialty.setDescription("General");
 
-        radSpecialty = vetSpecialtyService.save(radSpecialty);
-        generalSpecialty = vetSpecialtyService.save(generalSpecialty);
+        //radSpecialty = vetSpecialtyService.save(radSpecialty);
+        //generalSpecialty = vetSpecialtyService.save(generalSpecialty);
 
         Vet vet = new Vet();
         vet.setFirstName("Foo");
